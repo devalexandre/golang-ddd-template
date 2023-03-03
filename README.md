@@ -1,3 +1,4 @@
+```
 ├── cmd
 │   └── main.go
 ├── internal
@@ -32,6 +33,7 @@
 │   │   ├── config
 │   │   │   ├── environment.go
 │   │   │   └── environment_test.go
+
 
 mkdir -p cmd/internal/domain/user
 mkdir -p cmd/internal/infra/database/mysql
