@@ -1,0 +1,22 @@
+services:
+  app:
+    build: .
+    environment:
+      - DBUSER=postgres
+      - DBPASS=Postgres2023!
+      - DBHOST=postgres
+      - DBPORT=5432
+      - DBNAME=postgres
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      
+  postgres:
+    image: postgres
+    volumes:
+      - ./migrations:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_PASSWORD: "Postgres2023!"
+    ports:
+      - "5432:5432"
