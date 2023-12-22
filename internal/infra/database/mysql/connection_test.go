@@ -1,13 +1,15 @@
-package pgx_test
+package mysql_test
 
 import (
 	"context"
 	"testing"
 
-	"devalexandre/golang-ddd-template/internal/infra/pgx"
-	"devalexandre/golang-ddd-template/internal/infra/pgx/mocks"
+	"devalexandre/golang-ddd-template/internal/infra/database/mocks"
 
-	embeddedpostgres "github.com/fergusstrange/embedded-postgres"
+	mysql "devalexandre/golang-ddd-template/internal/infra/database/mysql"
+
+	"github.com/testcontainers/testcontainers-go"
+	msql "github.com/testcontainers/testcontainers-go/modules/mysql"
 	"github.com/vingarcia/ksql"
 )
 
@@ -18,10 +20,33 @@ type UserTest struct {
 func TestDatabase(t *testing.T) {
 
 	t.Run("Shoud be able to connect to database", func(t *testing.T) {
-		postgres := embeddedpostgres.NewDatabase()
+		ctx := context.Background()
 
-		bdUrl := "host=localhost port=5432 user=postgres password=postgres dbname=postgres"
-		db, err := pgx.NewDatabase(context.Background(), bdUrl, ksql.Config{})
+		mysqlContainer, err := msql.RunContainer(ctx,
+			testcontainers.WithImage("mysql"),
+			// msql.WithConfigFile(filepath.Join("testdata", "my_8.cnf")),
+			msql.WithDatabase("foo"),
+			msql.WithUsername("root"),
+			msql.WithPassword("password"),
+			// msql.WithScripts(filepath.Join("testdata", "schema.sql")),
+		)
+		if err != nil {
+			panic(err)
+		}
+
+		t.Cleanup(func() {
+			if err := mysqlContainer.Terminate(ctx); err != nil {
+				t.Fatalf("failed to terminate mysqlContainer: %s", err)
+			}
+		})
+
+		connStr, err := mysqlContainer.ConnectionString(ctx)
+
+		if err != nil {
+			t.Errorf("Error getting connection string: %s", err)
+		}
+
+		db, err := mysql.NewDatabase(context.Background(), connStr, ksql.Config{})
 
 		if err != nil {
 			t.Errorf("Error connecting to database: %s", err)
@@ -30,7 +55,7 @@ func TestDatabase(t *testing.T) {
 		if db == nil {
 			t.Errorf("Database is nil")
 		}
-		defer postgres.Stop()
+
 	})
 
 	t.Run("Shoud be able to insert data", func(t *testing.T) {
@@ -41,7 +66,7 @@ func TestDatabase(t *testing.T) {
 			},
 		}
 
-		db := &pgx.Database{
+		db := &mysql.Database{
 			DB: mockDB,
 		}
 
@@ -62,7 +87,7 @@ func TestDatabase(t *testing.T) {
 			},
 		}
 
-		db := &pgx.Database{
+		db := &mysql.Database{
 			DB: mockDB,
 		}
 
@@ -83,7 +108,7 @@ func TestDatabase(t *testing.T) {
 			},
 		}
 
-		db := &pgx.Database{
+		db := &mysql.Database{
 			DB: mockDB,
 		}
 
@@ -104,7 +129,7 @@ func TestDatabase(t *testing.T) {
 			},
 		}
 
-		db := &pgx.Database{
+		db := &mysql.Database{
 			DB: mockDB,
 		}
 

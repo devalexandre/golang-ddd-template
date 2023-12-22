@@ -1,4 +1,4 @@
-package pgx
+package database
 
 import (
 	"context"

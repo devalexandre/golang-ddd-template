@@ -2,7 +2,7 @@ package user
 
 import (
 	"context"
-	"devalexandre/golang-ddd-template/internal/infra/pgx"
+	"devalexandre/golang-ddd-template/internal/infra/database"
 )
 
 type IRepository interface {
@@ -14,7 +14,7 @@ type IRepository interface {
 }
 
 type Repository struct {
-	DB pgx.IDatabase
+	DB database.IDatabase
 }
 
 type User struct {
