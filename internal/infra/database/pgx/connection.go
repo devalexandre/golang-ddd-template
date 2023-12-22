@@ -2,16 +2,17 @@ package pgx
 
 import (
 	"context"
+	"devalexandre/golang-ddd-template/internal/infra/database"
 
 	"github.com/vingarcia/ksql"
 	"github.com/vingarcia/ksql/adapters/kpgx"
 )
 
 type Database struct {
-	DB IDB
+	DB database.IDB
 }
 
-func NewDatabase(ctx context.Context, connectionString string, config ksql.Config) (IDatabase, error) {
+func NewDatabase(ctx context.Context, connectionString string, config ksql.Config) (database.IDatabase, error) {
 	conn, errDb := kpgx.New(ctx, connectionString, config)
 
 	if errDb != nil {

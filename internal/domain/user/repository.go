@@ -2,10 +2,10 @@ package user
 
 import (
 	"context"
-	"devalexandre/golang-ddd-template/internal/infra/pgx"
+	"devalexandre/golang-ddd-template/internal/infra/database"
 )
 
-func NewRepository(db pgx.IDatabase) IRepository {
+func NewRepository(db database.IDatabase) IRepository {
 	return &Repository{
 		DB: db,
 	}

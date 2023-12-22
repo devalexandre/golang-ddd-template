@@ -1,3 +1,44 @@
+# `golang-ddd-template` Repository Structure
+
+This repository follows the Domain-Driven Design (DDD) pattern and is organized as follows:
+
+## Project Root
+- `Dockerfile`: Defines the Docker image build for the project.
+- `docker-compose.yml`: Configures Docker container orchestration.
+- `go.mod` and `go.sum`: Manage Go project dependencies.
+- `cmd/main.go`: The entry point of the application.
+
+## `internal` Directory
+Contains the internal logic of the application, divided into several subsections.
+
+### `domain` Subdirectory
+Where the core business logic is centralized.
+- `internal/domain/user/`
+  - `contracts.go`: Interfaces for the user repository and service.
+  - `factory.go`: Factory for creating user instances.
+  - `repository.go`: Implementation of the user repository.
+  - `service.go`: Implementation of the user service.
+
+### `helpers` Subdirectory
+Provides helper functions and utilities.
+- `internal/helpers/`
+  - `config/config.go`: Application configuration management.
+  - `errors.go`: Structures and functions related to errors.
+
+### `infra` Subdirectory
+Specific infrastructure implementations.
+- `internal/infra/pgx/`
+  - `connection.go`: Manages database connections.
+  - `contracts.go`: Interfaces for the infrastructure layer.
+
+## Tests
+Test files are named with the `_test.go` suffix and are located in the same directories as the files they test.
+
+
+
+Each part of the structure is designed to keep the code organized, modular, and focused on business rules.
+
+
 ```
 ├── cmd
 │   └── main.go
@@ -34,10 +75,3 @@
 │   │   │   ├── environment.go
 │   │   │   └── environment_test.go
 
-
-mkdir -p cmd/internal/domain/user
-mkdir -p cmd/internal/infra/database/mysql
-mkdir -p cmd/internal/infra/openapi
-mkdir -p cmd/internal/helpers/errors
-mkdir -p cmd/internal/helpers/logger
-mkdir -p cmd/internal/helpers/config
