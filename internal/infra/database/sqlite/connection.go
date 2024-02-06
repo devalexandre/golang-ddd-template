@@ -2,16 +2,17 @@ package sqlite
 
 import (
 	"context"
+	"devalexandre/golang-ddd-template/internal/infra/database"
 
 	"github.com/vingarcia/ksql"
 	"github.com/vingarcia/ksql/adapters/ksqlite3"
 )
 
 type Database struct {
-	DB IDB
+	DB database.IDB
 }
 
-func NewDatabase(ctx context.Context, pathFile string, config ksql.Config) (IDatabase, error) {
+func NewDatabase(ctx context.Context, pathFile string, config ksql.Config) (database.IDatabase, error) {
 	conn, errDb := ksqlite3.New(ctx, pathFile, config)
 
 	if errDb != nil {

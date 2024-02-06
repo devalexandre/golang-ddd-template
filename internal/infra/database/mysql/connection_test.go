@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"devalexandre/golang-ddd-template/internal/infra/database/mocks"
+	"devalexandre/golang-ddd-template/internal/infra/database/mysql/mocks"
 
 	mysql "devalexandre/golang-ddd-template/internal/infra/database/mysql"
 
