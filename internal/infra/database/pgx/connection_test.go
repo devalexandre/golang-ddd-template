@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"devalexandre/golang-ddd-template/internal/infra/database/pgx"
-	"devalexandre/golang-ddd-template/internal/infra/database/pgx/mocks"
+	"devalexandre/golang-ddd-template/internal/infra/database/mocks"
 
 	"github.com/testcontainers/testcontainers-go"
 	"github.com/testcontainers/testcontainers-go/modules/postgres"

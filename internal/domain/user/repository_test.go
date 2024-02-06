@@ -4,6 +4,7 @@ import (
 	"context"
 	"devalexandre/golang-ddd-template/internal/domain/user"
 	"devalexandre/golang-ddd-template/internal/infra/database/mocks"
+
 	"testing"
 )
 

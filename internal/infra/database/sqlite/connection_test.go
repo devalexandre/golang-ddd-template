@@ -3,7 +3,7 @@ package sqlite_test
 import (
 	"context"
 	"devalexandre/golang-ddd-template/internal/infra/database/sqlite"
-	"devalexandre/golang-ddd-template/internal/infra/database/sqlite/mocks"
+	"devalexandre/golang-ddd-template/internal/infra/database/mocks"
 	"os"
 	"testing"
 
