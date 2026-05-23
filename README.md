@@ -75,3 +75,74 @@ Each part of the structure is designed to keep the code organized, modular, and 
 │   │   │   ├── environment.go
 │   │   │   └── environment_test.go
 
+# LLM Context - path/to/folder
+
+## Responsibility
+
+Describe the responsibility of this folder in one or two short paragraphs.
+
+## Important Files
+
+| File | Purpose | Open When |
+|---|---|---|
+| `example.go` | Describe what this file does | Describe when an agent should open it |
+
+## Main Flows
+
+1. Describe the main input.
+2. Describe the main processing step.
+3. Describe the main output.
+4. Mention important dependencies.
+
+## Architecture Rules
+
+- Rule 1
+- Rule 2
+- Rule 3
+
+## Dependencies
+
+This folder depends on:
+
+- package A
+- package B
+
+This folder should not depend on:
+
+- package X
+- package Y
+
+## Common Changes
+
+Use this section to help agents decide what files to open.
+
+### To change business behavior
+
+Open:
+
+- `service.go`
+- `entity.go`
+
+### To change persistence
+
+Open:
+
+- `repository.go`
+
+### To change dependency wiring
+
+Open:
+
+- `factory.go`
+
+## Known Pitfalls
+
+- Pitfall 1
+- Pitfall 2
+- Pitfall 3
+
+## AI Agent Rules
+
+- Read this file before opening source code.
+- Open only the files related to the requested change.
+- Update this file when responsibilities or flows change.
